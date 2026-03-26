@@ -12,8 +12,10 @@ class CFG:
     imageModel = "convnext_small"
     textModel = "distilbert-base-uncased"
     textTokenizer = "distilbert-base-uncased"
-    pre_trained = True
-    trainable = True
+    image_pre_trained = True
+    text_pre_trained = True
+    image_trainable = True
+    text_trainable = True
 
     # Training settings
     batch_size = 32

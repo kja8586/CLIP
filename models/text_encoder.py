@@ -12,8 +12,8 @@ class TextEncoder(nn.Module):
     def __init__(self, model_name=None, pre_trained=None, trainable=None):
         super().__init__()
         model_name = model_name or CFG.textModel
-        pre_trained = pre_trained if pre_trained is not None else CFG.pre_trained
-        trainable = trainable if trainable is not None else CFG.trainable
+        pre_trained = pre_trained if pre_trained is not None else CFG.text_pre_trained
+        trainable = trainable if trainable is not None else CFG.text_trainable
 
         if pre_trained:
             self.model = DistilBertModel.from_pretrained(model_name)

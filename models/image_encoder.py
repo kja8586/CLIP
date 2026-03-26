@@ -12,8 +12,8 @@ class ImageEncoder(nn.Module):
     def __init__(self, model_name=None, pre_trained=None, trainable=None):
         super().__init__()
         model_name = model_name or CFG.imageModel
-        pre_trained = pre_trained if pre_trained is not None else CFG.pre_trained
-        trainable = trainable if trainable is not None else CFG.trainable
+        pre_trained = pre_trained if pre_trained is not None else CFG.image_pre_trained
+        trainable = trainable if trainable is not None else CFG.image_trainable
 
         self.model = timm.create_model(
             model_name, pretrained=pre_trained, num_classes=0, global_pool="avg"
