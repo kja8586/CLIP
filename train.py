@@ -16,8 +16,7 @@ def train_one_epoch(model, train_loader, optimizer, scheduler, criterion, scaler
     total_loss = 0.0
     total_samples = 0
 
-    loop = tqdm(train_loader, desc=f"Epoch [{epoch+1}/{num_epochs}] Train", leave=False)
-    for batch_idx, (images, text, ids) in enumerate(loop):
+    for batch_idx, (images, text, ids) in enumerate(train_loader):
         images = images.to(device)
         text = {k: v.to(device) for k, v in text.items()}
 
@@ -40,7 +39,8 @@ def train_one_epoch(model, train_loader, optimizer, scheduler, criterion, scaler
         total_samples += batch_size
 
         if batch_idx % 200 == 0:
-            loop.set_postfix(loss=loss.item(), lr=scheduler.get_last_lr()[0])
+            print(f"[Train] Epoch [{epoch+1}/{num_epochs}] Batch [{batch_idx}/{len(train_loader)}] "
+                  f"Loss: {loss.item():.4f} LR: {scheduler.get_last_lr()[0]:.6f}")
 
     return total_loss / total_samples
 
@@ -52,7 +52,7 @@ def validate(model, val_loader, criterion, device, epoch, num_epochs):
     total_loss = 0.0
     total_samples = 0
 
-    for images, text, ids in tqdm(val_loader, desc=f"Epoch [{epoch+1}/{num_epochs}] Val", leave=False):
+    for images, text, ids in val_loader:
         images = images.to(device)
         text = {k: v.to(device) for k, v in text.items()}
 
@@ -66,6 +66,8 @@ def validate(model, val_loader, criterion, device, epoch, num_epochs):
 
         total_loss += loss.item() * batch_size
         total_samples += batch_size
+
+        print(f" [VAL] Epoch [{epoch+1/{num_epochs}] Loss: {total_loss/ total_samples:.4f}")
 
     return total_loss / total_samples
 
