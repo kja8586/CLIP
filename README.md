@@ -66,7 +66,7 @@ python train.py --data_path data/flickr30k_images --caption_path data/results.cs
 python evaluate.py --weights model_weights.pth --data_path data/flickr30k_images --caption_path data/results.csv
 ```
 
-## Results (Flickr30k validation set)
+## Results using finetuned convnext_small and distilbert CLIP Style (Flickr30k validation set) 
 
 | Metric   | I2T     | T2I     | Mean    |
 |----------|---------|---------|---------|
@@ -74,8 +74,20 @@ python evaluate.py --weights model_weights.pth --data_path data/flickr30k_images
 | R@5      | 53.99%  | 51.08%  | 52.53%  |
 | R@10     | 65.85%  | 63.13%  | 64.49%  |
 
+## Results using Locked image Tuning (LiT) with text tower finetuned (Flickr30k validation set)
+
+| Metric   | I2T     | T2I     | Mean    |
+|----------|---------|---------|---------|
+| R@1      | 13.70%  | 11.03%  | 12.36%  |
+| R@5      | 33.21%  | 28.46%  | 30.84%  |
+| R@10     | 44.35%  | 39.42%  | 41.89%  |
+
+
+
 ## Acknowledgements
 
 - [Flickr30k Dataset](https://www.kaggle.com/datasets/hsankesara/flickr-image-dataset)
 - [CLIP paper](https://arxiv.org/abs/2103.00020) (Radford et al., 2021)
+- [ALIGN paper](https://arxiv.org/pdf/2102.05918) (Jia et al., 2021)
+- [LiT paper](https://arxiv.org/pdf/2111.07991) (Zhai et al., 2022)
 - [timm](https://github.com/huggingface/pytorch-image-models) / [HuggingFace Transformers](https://github.com/huggingface/transformers)
